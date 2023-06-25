@@ -133,5 +133,74 @@ const content = [
             React.createElement('h2', {}, "Let's get started!"),
             React.createElement(Expense, { expenses: expenses }
         ));`
+    ],
+    [
+        `NOTE::Always prefer(if possible) single state over multi state because it is easy to handle
+        
+        In case of single state with data as an object
+        // this may fail sometimes because it depends on previous state value (unsafe way)
+        setUserInput({
+            ...userInput,
+            enteredTitle: event.target.value
+        });
+
+        // instead of that you should do like this it will work fine (safer way)
+        setUserInput((prevState) => {
+            return{...prevState, enteredTitle : event.target.value};
+        })`
+    ],
+    [
+        `
+        this is NOT-recommended this may lead to bug
+        {props.expenses.map((item, index) => (
+            <ExpenseItem
+                key={index}
+                expense={item}
+            />
+        ))}
+        
+        
+        this is recommended
+        {props.expenses.map((item) => (
+            <ExpenseItem
+                key={item.id}
+                expense={item}
+            />
+        ))}
+        `
+    ],
+    [
+        `
+        {filteredExpenses.length === 0 ? <p>No expenses found.</p> :
+            filteredExpenses.map((item) => (
+                <ExpenseItem
+                    key={item.id}
+                    expense={item}
+                />
+            ))
+        }
+        the above long ternary expression can also be written like this
+        
+        {filteredExpenses.length === 0 && <p>No expenses found.</p>}
+        {filteredExpenses.length > 0 &&
+            filteredExpenses.map((item) => (
+                <ExpenseItem
+                    key={item.id}
+                    expense={item}
+                />
+            ))
+        }
+        
+
+        OR this 
+        let expensesContent = <p>No expenses found.</p>;
+        if (filteredExpenses.length > 0) {
+            expensesContent = filteredExpenses.map((item) => (
+                <ExpenseItem key={item.id} expense={item} />
+            ));
+        }
+
+        then render {expensesContent}
+        `
     ]
 ];
