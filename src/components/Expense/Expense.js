@@ -10,7 +10,7 @@ export default function Expense(props) {
 
     function filterCheck(expense) {
         // console.log(expense.date.getFullYear());
-        return (expense.date.getFullYear() == filterYear);
+        return (expense.date.getFullYear().toString() === filterYear);
     }
     function filterChangeHandler(selectedYear) {
         setFilterYear(selectedYear);
