@@ -41,7 +41,8 @@ export default function ExpenseForm(props) {
 
         const expenseData = {
             title: enteredTitle,
-            amount: Number(enteredAmount),
+            // amount: Number(enteredAmount),
+            amount: +enteredAmount, // another way to change in number
             date: new Date(enteredDate),
         };
 
@@ -71,6 +72,7 @@ export default function ExpenseForm(props) {
             </div>
         </div>
         <div className='new-expense__actions'>
+            <button type='button' onClick={props.onCancel}>Cancel</button>
             <button type='submit'>Add Expense</button>
             {/* <button type='submit' onClick={this is not the best way(see form tag above for best way)}>Add Expense</button> */}
         </div>
